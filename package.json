@@ -1,0 +1,20 @@
+{
+  "name": "leetcode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "p": "git add . && git commit -m 'update' && git push"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Allen-1998/leetcode.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Allen-1998/leetcode/issues"
+  },
+  "homepage": "https://github.com/Allen-1998/leetcode#readme"
+}
