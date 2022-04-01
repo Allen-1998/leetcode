@@ -6,23 +6,16 @@
 
 // @lc code=start
 function canReorderDoubled(arr: number[]): boolean {
-  arr.sort((a, b) => a - b);
-  let numOccurenceMap: Map<number, number> = new Map<number, number>();
-  for (let num of arr) {
-    numOccurenceMap.set(num, (numOccurenceMap.get(num) || 0) + 1);
-  }
-  for (let num of arr) {
-    if (numOccurenceMap.has(num)) {
-      let matchingPairNum: number = num >= 0 ? num * 2 : num / 2;
-      if (!numOccurenceMap.has(matchingPairNum)) {
-        return false;
-      }
-      for (let key of [num, matchingPairNum]) {
-        numOccurenceMap.set(key, numOccurenceMap.get(key) - 1);
-        if (numOccurenceMap.get(key) === 0) {
-          numOccurenceMap.delete(key);
-        }
-      }
+  if (arr.filter((v) => v).length % 2 !== 0) return false;
+  arr.sort((a, b) => Math.abs(b) - Math.abs(a));
+  let l = arr.length;
+  while (l--) {
+    const num = arr[l];
+    const x = arr.indexOf(num * 2);
+    if (x > -1) {
+      arr[l] = arr[x] = 0;
+    } else {
+      return false;
     }
   }
   return true;
@@ -32,4 +25,11 @@ function canReorderDoubled(arr: number[]): boolean {
 let arr = [3, 1, 3, 6];
 arr = [2, 1, 2, 6];
 arr = [4, -2, 2, -4];
+// arr = [1, 2, 4, 8];
+// arr = [2, 1, 1, 4, 8, 8];
+// arr = [1, 2, 4, 16, 8, 4];
+// arr = [2, 1, 2, 1, 1, 1, 2, 2];
+// arr = [0, 0, 0, 0, 0, 0];
+// arr = [-2, -6, -3, 4, -4, 2];
+// arr = [1,2,1,-8,8,-4,4,-4,2,-2]
 console.log(canReorderDoubled(arr));
