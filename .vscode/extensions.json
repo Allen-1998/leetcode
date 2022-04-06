@@ -2,6 +2,7 @@
   "recommendations": [
     "wallabyjs.quokka-vscode",
     "esbenp.prettier-vscode",
-    "LeetCode.vscode-leetcode"
+    "leetcode.vscode-leetcode",
+    "Gruntfuggly.todo-tree"
   ]
 }
