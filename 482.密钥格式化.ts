@@ -7,9 +7,10 @@
 // @lc code=start
 function licenseKeyFormatting(s: string, k: number): string {
   s = s.replace(/-/g, "").toUpperCase();
-  const reg = new RegExp(`(?<=\\w{${s.length % k || k}})(\\w{${k}})`, "g");
-  return s.replace(reg, "-$1");
+  const reg = new RegExp(`(\\w)(?=(?:\\w{${k}})+$)`, "g");
+  return s.replace(reg, "$1-");
 }
 // @lc code=end
 
-console.log(licenseKeyFormatting("5F3Z-2e-9-w", 4));
+console.log(licenseKeyFormatting("75F3Z-2e-9-w", 4));
+console.log(licenseKeyFormatting("2-5g-3-J", 2));
