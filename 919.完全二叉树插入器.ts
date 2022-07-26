@@ -36,8 +36,7 @@ class CBTInserter {
   insert(val: number): number {
     this.tree.push(val);
     const n = this.tree.length;
-    const index = (n - (n % 2)) / 2 - 1;
-    return this.tree[index];
+    return this.tree[(n - (n % 2)) / 2 - 1];
   }
 
   get_root(): TreeNode | null {
