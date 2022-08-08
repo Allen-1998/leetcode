@@ -6,24 +6,39 @@
 
 // @lc code=start
 function modifyString(s: string): string {
-  const n = s.length;
-  const arr = [...s];
-  for (let i = 0; i < n; ++i) {
-    if (arr[i] === "?") {
-      for (let j = 0; j < 3; ++j) {
-        if (
-          (i > 0 &&
-            arr[i - 1] === String.fromCharCode("a".charCodeAt(0) + j)) ||
-          (i < n - 1 &&
-            arr[i + 1] === String.fromCharCode("a".charCodeAt(0) + j))
-        ) {
-          continue;
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === "?") {
+      const l = s[i - 1],
+        r = s[i + 1];
+      let c = "";
+      if (l === "a") {
+        if (r === "b") {
+          c = "c";
+        } else {
+          c = "b";
         }
-        arr[i] = String.fromCharCode("a".charCodeAt(0) + j);
-        break;
+      } else if (l == "b") {
+        if (r === "c") {
+          c = "a";
+        } else {
+          c = "c";
+        }
+      } else if (l == "c") {
+        if (r === "a") {
+          c = "b";
+        } else {
+          c = "a";
+        }
+      } else {
+        if (r === "a") {
+          c = "b";
+        } else {
+          c = "a";
+        }
       }
+      s = s.slice(0, i) + c + s.slice(i + 1);
     }
   }
-  return arr.join("");
+  return s;
 }
 // @lc code=end
