@@ -16,7 +16,7 @@ function findClosestElements(arr: number[], k: number, x: number): number[] {
     const v = arr[i];
     if (res.length < k) {
       res.push(v);
-    } else if (judge(v, res[0], x) || judge(v, res[res.length - 1], x)) {
+    } else if (judge(v, res[0], x)) {
       res.shift();
       res.push(v);
     }
