@@ -15,21 +15,26 @@ class TreeNode {
   }
 }
 // @lc code=start
-let map = new Map<number, number>();
-let ans = 0;
+
 function widthOfBinaryTree(root: TreeNode | null): number {
-  map.clear();
-  ans = 0;
-  dfs(root, 1, 0);
-  return ans;
-}
-function dfs(root: TreeNode | null, u: number, depth: number): void {
-  if (root == null) return;
-  if (!map.has(depth)) map.set(depth, u);
-  ans = Math.max(ans, u - map.get(depth) + 1);
-  u = u - map.get(depth) + 1;
-  dfs(root.left, u << 1, depth + 1);
-  dfs(root.right, (u << 1) | 1, depth + 1);
+  const arr: bigint[][] = [];
+  let max = 1n;
+  const dfs = (root: TreeNode | null, m: number, n: bigint) => {
+    if (!root) return;
+    if (arr[m]) {
+      arr[m][1] = n;
+    } else {
+      arr[m] = [n, 1n];
+    }
+    const v = arr[m][1] - arr[m][0] + 1n;
+    if (v > max) {
+      max = v;
+    }
+    dfs(root.left, m + 1, 2n * n);
+    dfs(root.right, m + 1, 2n * n + 1n);
+  };
+  dfs(root, 0, 1n);
+  return Number(max);
 }
 // @lc code=end
 
