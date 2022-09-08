@@ -12,23 +12,19 @@ function constructArray(n: number, k: number): number[] {
   const d: number[] = [];
   while (k--) {
     if (c) {
-      d.push(b);
-      b++;
+      d.push(b++);
     } else {
-      d.push(n);
-      n--;
+      d.push(n--);
     }
     c = !c;
   }
   if (a) {
     while (n >= b) {
-      d.push(n);
-      n--;
+      d.push(n--);
     }
   } else {
     while (n >= b) {
-      d.push(b);
-      b++;
+      d.push(b++);
     }
   }
   return d;
