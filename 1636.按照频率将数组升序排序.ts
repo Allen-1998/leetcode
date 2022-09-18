@@ -6,13 +6,12 @@
 
 // @lc code=start
 function frequencySort(nums: number[]): number[] {
-  const m = new Map();
-  for (let i = 0; i < nums.length; i++) {
-    const v = nums[i];
-    m.set(v, (m.get(v) || 0) + 1);
-  }
-  nums.sort((a, b) => (m.get(a) === m.get(b) ? b - a : m.get(a) - m.get(b)));
-  return nums;
+  const m = nums.reduce((x, y) => x.set(y, (x.get(y) ?? 0) + 1), new Map());
+  return nums.sort((a, b) => {
+    const c = m.get(a),
+      d = m.get(b);
+    return c === d ? b - a : c - d;
+  });
 }
 // @lc code=end
 
