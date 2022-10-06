@@ -39,7 +39,7 @@ function threeEqualParts(arr: number[]): number[] {
   let e = "";
   for (let i = l + 1; i < r; i++) {
     const v = arr[i];
-    if (v === 1 || (e && e !== d)) {
+    if (v === 1 || e) {
       e += v;
       if (e === d) {
         return [l, i + 1];
