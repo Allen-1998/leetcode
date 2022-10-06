@@ -7,6 +7,7 @@
 // @lc code=start
 function threeEqualParts(arr: number[]): number[] {
   const a = arr.filter((i) => i).length;
+  if (a === 0) return [0, arr.length - 1];
   if (a % 3) return [-1, -1];
   let b = a / 3;
   let c = "";
@@ -18,24 +19,42 @@ function threeEqualParts(arr: number[]): number[] {
       b--;
       if (b === 0) {
         r = i;
-        b = a / 3;
         break;
       }
     }
   }
   let d = "";
+  let l = 0;
   for (let i = 0; i < arr.length; i++) {
+    if (i === r) return [-1, -1];
     const v = arr[i];
     if (v === 1 || d) {
       d += v;
       if (d === c) {
+        l = i;
+        break;
       }
     }
   }
+  let e = "";
+  let f = l + 1;
+  for (let i = f; i < r; i++) {
+    const v = arr[i];
+
+    if (v === 1 || (e && e !== d)) {
+      e += v;
+      if (e === d) {
+        f = i;
+      }
+    }
+  }
+  return e === d ? [l, f + 1] : [-1, -1];
 }
 // @lc code=end
 
-// console.log(threeEqualParts([1, 0, 1, 0, 1]));
-// console.log(threeEqualParts([1, 1, 0, 1, 1]));
-// console.log(threeEqualParts([1, 1, 0, 0, 1]));
+console.log(threeEqualParts([1, 0, 1, 0, 1]));
+console.log(threeEqualParts([1, 1, 0, 1, 1]));
+console.log(threeEqualParts([1, 1, 0, 0, 1]));
 console.log(threeEqualParts([1, 0, 1, 1, 0]));
+console.log(threeEqualParts([1, 1, 0, 0, 1]));
+console.log(threeEqualParts([0, 1, 0, 1, 1]));
