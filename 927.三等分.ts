@@ -37,18 +37,16 @@ function threeEqualParts(arr: number[]): number[] {
     }
   }
   let e = "";
-  let f = l + 1;
-  for (let i = f; i < r; i++) {
+  for (let i = l + 1; i < r; i++) {
     const v = arr[i];
-
     if (v === 1 || (e && e !== d)) {
       e += v;
       if (e === d) {
-        f = i;
+        return [l, i + 1];
       }
     }
   }
-  return e === d ? [l, f + 1] : [-1, -1];
+  return [-1, -1];
 }
 // @lc code=end
 
