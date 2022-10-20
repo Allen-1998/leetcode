@@ -10,7 +10,7 @@ function kthGrammar(n: number, k: number): number {
     b = false;
   while (a > 2) {
     if (k > a / 2) {
-      k = a - k;
+      k = a - k + 1;
       if (n % 2 === 0) {
         b = !b;
       }
