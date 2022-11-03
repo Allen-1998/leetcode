@@ -5,12 +5,19 @@
  */
 
 // @lc code=start
+// function maxRepeating(sequence: string, word: string): number {
+//   let i = 1;
+//   while (new RegExp(`(${word}){${i}}`).test(sequence)) {
+//     i++;
+//   }
+//   return i - 1;
+// }
 function maxRepeating(sequence: string, word: string): number {
-  let i = 1;
-  while (sequence.match(new RegExp(`(${word}){${i}}`))) {
-    i++;
+  let i = Math.floor(sequence.length / word.length);
+  while (!new RegExp(`(${word}){${i}}`).test(sequence)) {
+    i--;
   }
-  return i - 1;
+  return i;
 }
 // @lc code=end
 
