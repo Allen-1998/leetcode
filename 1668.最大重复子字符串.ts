@@ -6,7 +6,7 @@
 
 // @lc code=start
 function maxRepeating(sequence: string, word: string): number {
-  let i = 0;
+  let i = 1;
   while (sequence.match(new RegExp(`(${word}){${i}}`))) {
     i++;
   }
@@ -15,4 +15,5 @@ function maxRepeating(sequence: string, word: string): number {
 // @lc code=end
 
 console.log(maxRepeating("ababc", "ab"));
+console.log(maxRepeating("ababc", "ac"));
 console.log(maxRepeating("aaabaaaabaaabaaaabaaaabaaaabaaaaba", "aaaba"));
